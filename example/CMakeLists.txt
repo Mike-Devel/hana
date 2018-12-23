@@ -2,6 +2,11 @@
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE.md or copy at http://boost.org/LICENSE_1_0.txt)
 
+if (NOT TARGET examples)
+    add_custom_target(examples DEPENDS hana_examples)
+else()
+    add_dependencies(examples hana_examples)
+endif()
 add_custom_target(examples COMMENT "Build all the examples.")
 add_dependencies(hana_check examples)
 

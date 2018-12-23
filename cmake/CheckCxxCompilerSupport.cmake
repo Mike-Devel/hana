@@ -66,15 +66,18 @@ elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
         ")
     endif()
 elseif (MSVC)
-    message(WARNING "
-    ### Using the native Microsoft compiler (MSVC) is not supported for lack
-    ### of proper C++14 support. However, you can install pre-built Clang for
-    ### Windows binaries (with Visual Studio integration if desired) at
-    ### http://llvm.org/releases/download.html.
-    ###
-    ### More information about how to set up Hana with Clang for Windows is
-    ### available on Hana's wiki at http://git.io/vBYIp.
-    ")
+	message("########################################### ${CMAKE_CXX_COMPILER_VERSION}")
+	if (${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS "6.0.0")
+		message(WARNING "
+		### Using the native Microsoft compiler (MSVC) is not supported for lack
+		### of proper C++14 support. However, you can install pre-built Clang for
+		### Windows binaries (with Visual Studio integration if desired) at
+		### http://llvm.org/releases/download.html.
+		###
+		### More information about how to set up Hana with Clang for Windows is
+		### available on Hana's wiki at http://git.io/vBYIp.
+		")
+	endif()
 else()
     message(WARNING "
     ### You appear to be using a compiler that is not yet tested with Hana.
